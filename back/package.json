@@ -1,16 +1,23 @@
 {
   "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.4",
+    "morgan": "^1.10.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
+    "dotenv": "^16.4.5",
     "eslint": "^9.11.1",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.7",
     "prettier": "^3.3.3"
   },
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "nodemon" 
   }
 }
