@@ -1,12 +1,11 @@
 import { Router } from "express";
-import { createUsers, getUsers, deleteUsers } from "../controllers/usersControllers";
+import usersRouter from "../routes/usersRouter"; 
+import appointmentsRouter from "../routes/appointmentsRouter";
 
 const router: Router = Router(); 
 
-router.get('/users', ) 
+router.use('/users', usersRouter); 
 
-router.post('/users', createUsers); 
-
-router.delete('/users', ) 
+router.use("/appointments", appointmentsRouter);
 
 export { router }; 
