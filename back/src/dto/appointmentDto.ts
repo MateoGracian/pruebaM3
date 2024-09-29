@@ -1,6 +1,9 @@
+import Status from "../enums/enums";
+
 interface IAppointmentDto {
     date: string;
     time: string;
+    status: Status; 
     userId: number;
 }
 
