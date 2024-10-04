@@ -41,7 +41,7 @@ export const updateAppointments = async (req: Request, res: Response) => {
 //delete an appointment 
 
 export const deleteAppointments = async (req: Request, res: Response) => {
-    const { id } = req.body;
-    deleteAppointmentsService(id);
-    res.status(204).send("eliminado correctamente");
+    const { id } = req.params;
+    deleteAppointmentsService(parseInt(id));
+    res.status(204).send("eliminado correctamente"); 
 };

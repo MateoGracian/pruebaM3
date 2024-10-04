@@ -9,7 +9,7 @@ appointmentsRouter.get('/', getAppointments);
 
 appointmentsRouter.get('/:id', getAppointmentsById);
 
-appointmentsRouter.put('/cancel', updateAppointments);
+appointmentsRouter.put('/:id', updateAppointments);
 
 appointmentsRouter.delete('/', deleteAppointments); 
 
