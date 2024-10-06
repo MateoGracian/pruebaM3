@@ -4,8 +4,8 @@ interface IAppointment {
     id: number;
     date: string;
     time: string;
-    status: Status;
     userId: number;
+    status: Status;
 }
 
 export default IAppointment; 

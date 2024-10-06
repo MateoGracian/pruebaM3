@@ -1,7 +1,11 @@
+import ICredentialsDto from "./credentialsDto";
+
 interface IUserDto {
     name: string;
     email: string;
-    active: boolean;
+    birthdate: number;
+    nDni: number;
+    credentialsId: ICredentialsDto;
 }
 
 export default IUserDto; 

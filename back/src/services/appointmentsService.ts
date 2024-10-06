@@ -1,7 +1,36 @@
 import IAppointment from "../interfaces/IAppointment";
 import IAppointmentDto from "../dto/appointmentDto";
 
-let appointments: IAppointment[] = []; 
+let appointments: IAppointment[] = [
+    {
+        id: 1,
+        date: '2021-10-10',
+        time: '10:00',
+        status: 'active',
+        userId: 1
+    },
+    {
+        id: 2,
+        date: '2021-10-10',
+        time: '11:00',
+        status: 'active',
+        userId: 3
+    },
+    {
+        id: 3,
+        date: '2021-10-10',
+        time: '12:00',
+        status: 'active',
+        userId: 2
+    },
+    {
+        id: 4,
+        date: '2021-10-10',
+        time: '13:00',
+        status: 'active',
+        userId: 1
+    }
+]; 
 
 let id: number = 1; 
 
@@ -25,6 +54,18 @@ export const createAppointmentsService = async (appointmentData: IAppointmentDto
 export const getAppointmentsService = async (): Promise<IAppointment[]> => {
     return appointments;  
 }; 
+
+// //get an appointment by id
+// export const getAppointmentsByIdService = async (id: number): Promise<IAppointment | null> => {
+//     const appointment = appointments.find((appointment: IAppointment) => appointment.id === id);
+    
+//     if (!appointment) {
+//         console.error(`Appointment with id ${id} not found`);
+//         return null; 
+//     }
+
+//     return appointment; 
+// }
 
 //update an appointment status
 export const updateAppointmentsService = async (id: number): Promise<IAppointment | null> => {

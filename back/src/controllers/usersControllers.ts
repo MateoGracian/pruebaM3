@@ -10,8 +10,8 @@ import IUser from "../interfaces/IUser";
 
 export const createUsers = async (req: Request, res: Response) => {
   try {
-    const { name, email, active } = req.body;
-    const newUser = await createUsersService({ name, email, active });
+    const { name, email, birthdate, nDni, credentialsId} = req.body;
+    const newUser = await createUsersService({ name, email, birthdate, nDni, credentialsId});
     res.status(201).json(newUser);
   } catch (error) {
     console.error(error);

@@ -1,26 +1,33 @@
-import IUser from '../interfaces/IUser';  
+import IUser from '../interfaces/IUser';
 import IUserDto from '../dto/userDto'; 
+import { createCredentialsService } from './credentialsServices';
+import ICredentials from '../interfaces/ICredentials';
 
-let users: IUser[] = [{
-    id: 0,
-    name: 'Juan',
-    email: 'juan@email.com', 
-} as IUser, {
+export let users: IUser[] = [{
     id: 1,
     name: 'Pedro',
-    email: 'pedro@email.com', 
-} as IUser];
+    email: 'pedro@email.com',
+    birthdate: 1995,
+    nDni: 87654321,
+    credentialsId: {
+        id: 1,
+        username: 'pedro',
+        password: 'pedro123'
+    }
+}];
 
-let id: number = 1;
+let id: number = 2;
 
 export const createUsersService = async (userData: IUserDto): Promise<IUser> => {
+    const newCredentials: ICredentials = await createCredentialsService(userData.credentialsId);
     const newUser: IUser = {
-        id,
+        id: id++,
         name: userData.name,
         email: userData.email,
-        active: userData.active 
+        birthdate: userData.birthdate,
+        nDni: userData.nDni,
+        credentialsId: newCredentials
     };
-    id++; 
     users.push(newUser);
     return newUser;
 }; 
