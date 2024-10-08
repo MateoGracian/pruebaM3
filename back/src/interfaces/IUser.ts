@@ -6,7 +6,7 @@ interface IUser {
     email: string;
     birthdate: number;
     nDni: number;  
-    credentialsId: ICredentials; 
+    credentialsId: number; 
 }
 
 // export interface IUserWithCredentials extends IUser {

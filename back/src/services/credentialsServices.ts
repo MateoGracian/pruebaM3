@@ -10,27 +10,35 @@
 
 import ICredentials from '../interfaces/ICredentials';
 import ICredentialsDto from '../dto/credentialsDto';
-import { users } from '../services/usersService'
-import IUser from '../interfaces/IUser';
 
-export const createCredentialsService = async (credentialsData: ICredentialsDto): Promise<ICredentials> => {
+const credentialsDB: ICredentials[] = [];
+let id: number = 1; 
+
+export const createCredentialsService = async (credentialsData: ICredentialsDto): Promise<number> => {
+    
+    const {username, password} = credentialsData;
+
     const newCredentials: ICredentials = {
-        id: users.length + 1,
-        username: credentialsData.username,
-        password: credentialsData.password
+        id, 
+        username,
+        password,
     };
-    return newCredentials;
+    
+    credentialsDB.push(newCredentials);
+    id++; 
+    return newCredentials.id;
 }; 
 
 export const checkCredentialsService = async (username: string, password: string): Promise<number | null> => {
-    const user = users.find((user: IUser) => user.credentialsId.username === username);
-    if (!user) {
+    const credFound = credentialsDB.find((cred: ICredentials) => cred.username === username);
+    if (!credFound) {
         console.error(`User with username ${username} not found`);
         return null;
     }
-    if (user.credentialsId.password !== password) {
+    if (credFound.password !== password) {
         console.error(`Password incorrect`);
         return null;
     }
-    return user.id;
+    return credFound.id;
 }
+

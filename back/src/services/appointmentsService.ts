@@ -37,16 +37,20 @@ let id: number = 1;
 
 //create an appointment 
 export const createAppointmentsService = async (appointmentData: IAppointmentDto): Promise<IAppointment> => {
+   
+    const {date, time, status, userId} = appointmentData;
+   
     const newAppointment: IAppointment = {
         id,
-        date: appointmentData.date,
-        time: appointmentData.time,
-        status: appointmentData.status,
-        userId: appointmentData.userId
+        date,
+        time,
+        status,
+        userId, 
     };
+
     newAppointment.status = 'active';
-    id++; 
     appointments.push(newAppointment);
+    id++;   
     return newAppointment;
 };
 
@@ -55,17 +59,18 @@ export const getAppointmentsService = async (): Promise<IAppointment[]> => {
     return appointments;  
 }; 
 
-// //get an appointment by id
-// export const getAppointmentsByIdService = async (id: number): Promise<IAppointment | null> => {
-//     const appointment = appointments.find((appointment: IAppointment) => appointment.id === id);
-    
-//     if (!appointment) {
-//         console.error(`Appointment with id ${id} not found`);
-//         return null; 
-//     }
+//get an appointment by id
 
-//     return appointment; 
-// }
+export const getAppointmentsByIdService = async (id: number): Promise<IAppointment | null> => {
+    const appointment = appointments.find((appointment: IAppointment) => appointment.id === id);
+    
+    if (!appointment) {
+        console.error(`Appointment with id ${id} not found`);
+        return null; 
+    }
+
+    return appointment; 
+}
 
 //update an appointment status
 export const updateAppointmentsService = async (id: number): Promise<IAppointment | null> => {

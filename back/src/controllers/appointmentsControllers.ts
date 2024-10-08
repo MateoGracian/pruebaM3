@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createAppointmentsService, getAppointmentsService, deleteAppointmentsService, updateAppointmentsService } from "../services/appointmentsService";
+import { createAppointmentsService, getAppointmentsService, deleteAppointmentsService, updateAppointmentsService, getAppointmentsByIdService } from "../services/appointmentsService";
 import IAppointment from "../interfaces/IAppointment"; 
 
 //create an appointment 
@@ -10,38 +10,37 @@ export const createAppointments = (req: Request, res: Response) => {
         const newAppointment = createAppointmentsService({ date, time, status, userId });
         res.status(201).json(newAppointment);
     } catch (error) {
-        console.error(error);
+        res.status(404).send("No se han podido cargar los turnos");
     }
 }; 
 
 //get all appointments 
 
-export const getAppointments = async (req: Request, res: Response) => {
+export const getAppointments = async (req: Request, res: Response): Promise<Response> => {
     const appointments: IAppointment[] = await getAppointmentsService();
-    res.status(200).json(appointments);
+    return res.status(200).json(appointments);
 }; 
 
 //get an appointment by id 
 
-export const getAppointmentsById = async (req: Request, res: Response) => {
+export const getAppointmentsById = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
-    const appointments: IAppointment[] = await getAppointmentsService();
-    const appointment = appointments.find((appointmen) => appointmen.id === parseInt(id));
-    res.status(200).json(appointment);
+    const appointment = getAppointmentsByIdService(parseInt(id));
+    return res.status(200).json(appointment);
 }; 
 
 //update an appointment 
 
-export const updateAppointments = async (req: Request, res: Response) => {
+export const updateAppointments = async (req: Request, res: Response): Promise<Response>=> {
     const { id } = req.body;
     const appointment = updateAppointmentsService(parseInt(id));
-    res.status(200).json(appointment);
+    return res.status(200).json(appointment);
 }; 
 
 //delete an appointment 
 
-export const deleteAppointments = async (req: Request, res: Response) => {
+export const deleteAppointments = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     deleteAppointmentsService(parseInt(id));
-    res.status(204).send("eliminado correctamente"); 
+    return res.status(204).send("eliminado correctamente"); 
 };

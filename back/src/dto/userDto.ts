@@ -5,7 +5,8 @@ interface IUserDto {
     email: string;
     birthdate: number;
     nDni: number;
-    credentialsId: ICredentialsDto;
+    username: string;
+    password: string;
 }
 
 export default IUserDto; 
