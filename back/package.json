@@ -5,6 +5,7 @@
     "@types/node": "^22.7.4",
     "morgan": "^1.10.0",
     "ts-node": "^10.9.2",
+    "typeorm": "^0.3.20",
     "typescript": "^5.6.2"
   },
   "dependencies": {
@@ -14,11 +15,14 @@
     "eslint": "^9.11.1",
     "express": "^4.21.0",
     "nodemon": "^3.1.7",
-    "prettier": "^3.3.3"
+    "pg": "^8.13.0",
+    "prettier": "^3.3.3",
+    "reflect-metadata": "^0.2.2"
   },
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "tsc",
-    "start": "nodemon"
+    "start": "nodemon",
+    "typeorm": "typeorm"
   }
 }
