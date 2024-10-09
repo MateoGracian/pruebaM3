@@ -1,7 +1,7 @@
 import app from './server'; 
 import { PORT } from './config/envs';
-import "reflect-metadata";
 import { AppDataSource } from './config/data-source'; 
+import "reflect-metadata";
 
 AppDataSource.initialize()
 .then( res => {
@@ -10,6 +10,9 @@ AppDataSource.initialize()
         console.log(`Server listening on port ${PORT}`);
     });
 })
+.catch( err => {
+    console.log("Error al conectar a la base de datos", err);
+});
 
 
 

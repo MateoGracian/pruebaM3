@@ -1,8 +1,8 @@
-import { PrimaryGeneratedColumn, Column, OneToMany, Entity } from "typeorm";
+import { PrimaryGeneratedColumn, Column, OneToMany, Entity, ManyToOne } from "typeorm";
 import  Status  from "../enums/enums";
 import { User } from "./User"; 
 
-Entity()
+@Entity()
 export class Appointment {
     @PrimaryGeneratedColumn()
     id: number; 
@@ -16,6 +16,6 @@ export class Appointment {
     @Column()
     status: Status; 
 
-    @OneToMany(() => User, (user) => user.appointments)
+    @ManyToOne(() => User, (user) => user.appointments)
     user: User; 
 }

@@ -1,10 +1,16 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
-import { Credential } from "./Credential"
-import { Appointment } from "./Appointment"
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from "typeorm";
+import { Credential } from "./Credential";
+import { Appointment } from "./Appointment";
 
-Entity({
-    name: "users"
-})
+@Entity({name: "users"})
 export class User {
     @PrimaryGeneratedColumn()
     id: number
@@ -16,18 +22,18 @@ export class User {
 
     @Column("text")
     email: string
-    
+
     @Column("date")
     birthdate: number
-    
-    @Column("number")
-    nDni: number 
+
+    @Column("int")
+    nDni: number
 
     @OneToOne(() => Credential)
     @JoinColumn()
     credentials: Credential
 
     @OneToMany(() => Appointment, (appointments) => appointments.user)
-    appointments: Appointment[]; 
+    appointments: Appointment[];
 }
 
