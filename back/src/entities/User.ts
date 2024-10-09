@@ -23,7 +23,7 @@ export class User {
     @Column("text")
     email: string
 
-    @Column("date")
+    @Column("int")
     birthdate: number
 
     @Column("int")
@@ -32,6 +32,9 @@ export class User {
     @OneToOne(() => Credential)
     @JoinColumn()
     credentials: Credential
+
+    @Column({ nullable: true })
+    credentialsId: number;
 
     @OneToMany(() => Appointment, (appointments) => appointments.user)
     appointments: Appointment[];
