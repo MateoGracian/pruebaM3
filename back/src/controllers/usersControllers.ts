@@ -39,19 +39,10 @@ export const getUsers = async (req: Request, res: Response): Promise<Response> =
   return res.status(200).json(users);
 };
 
-//get user by id //!HACER QUE UTILIZE EL getUserByIdService y no el getUsersService
+//get user by id
 
 export const getUsersById = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const user: User = await getUserByIdService(parseInt(id));
     return res.status(200).json(user);
 }
-
-//delete user by id 
-
-// export const deleteUsers = async (req: Request, res: Response): Promise<Response> => {
-//     const { id } = req.body;
-//     await deleteUsersService(id);
-//     return res.status(204).send("eliminado correctamente");
-// };
-

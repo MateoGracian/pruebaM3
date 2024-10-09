@@ -1,93 +1,52 @@
-import IAppointment from "../interfaces/IAppointment";
 import IAppointmentDto from "../dto/appointmentDto";
-
-let appointments: IAppointment[] = [
-    {
-        id: 1,
-        date: '2021-10-10',
-        time: '10:00',
-        status: 'active',
-        userId: 1
-    },
-    {
-        id: 2,
-        date: '2021-10-10',
-        time: '11:00',
-        status: 'active',
-        userId: 3
-    },
-    {
-        id: 3,
-        date: '2021-10-10',
-        time: '12:00',
-        status: 'active',
-        userId: 2
-    },
-    {
-        id: 4,
-        date: '2021-10-10',
-        time: '13:00',
-        status: 'active',
-        userId: 1
-    }
-]; 
-
-let id: number = 1; 
-
+import { modelAppointment } from "../config/data-source";
+import { Appointment } from "../entities/Appointment";
 
 //create an appointment 
-export const createAppointmentsService = async (appointmentData: IAppointmentDto): Promise<IAppointment> => {
-   
-    const {date, time, status, userId} = appointmentData;
-   
-    const newAppointment: IAppointment = {
-        id,
-        date,
-        time,
-        status,
-        userId, 
-    };
-
-    newAppointment.status = 'active';
-    appointments.push(newAppointment);
-    id++;   
-    return newAppointment;
+export const createAppointmentsService = async (appointmentData: IAppointmentDto): Promise<Appointment> => {
+    const appointment = await modelAppointment.create(appointmentData);
+    const result = await modelAppointment.save(appointment);
+    return result; 
 };
 
 //get all appointments 
-export const getAppointmentsService = async (): Promise<IAppointment[]> => {
-    return appointments;  
+export const getAppointmentsService = async (): Promise<Appointment[]> => {
+    const appointments = await modelAppointment.find({
+        relations: ['user']
+    });
+    return appointments; 
 }; 
 
 //get an appointment by id
 
-export const getAppointmentsByIdService = async (id: number): Promise<IAppointment | null> => {
-    const appointment = appointments.find((appointment: IAppointment) => appointment.id === id);
-    
-    if (!appointment) {
-        console.error(`Appointment with id ${id} not found`);
-        return null; 
+export const getAppointmentsByIdService = async (id: number): Promise<Appointment> => {
+    const appointment = await modelAppointment.findOne({
+        where: {
+            id: id
+        },
+        relations: ['user']
+    });
+
+    if(!appointment) {
+        throw new Error('No se ha encontrado el turno');
     }
 
-    return appointment; 
+    return appointment;     
 }
 
 //update an appointment status
-export const updateAppointmentsService = async (id: number): Promise<IAppointment | null> => {
-    const appointment = appointments.find((appointment: IAppointment) => appointment.id === id);
-    
-    if (!appointment) {
-        console.error(`Appointment with id ${id} not found`);
-        return null; 
+export const updateAppointmentsService = async (id: number): Promise<Appointment> => {
+    const appointment = await modelAppointment.findOne({
+        where: {
+            id: id
+        },
+        relations: ['user']
+    });
+
+    if(!appointment) {
+        throw new Error('No se ha encontrado el turno');
     }
 
-    appointment.status = 'cancelled';   
+    appointment.status = 'cancelled'; 
     return appointment; 
-};
-
-//delete an appointment 
-export const deleteAppointmentsService = async (id: number): Promise<void> => {
-    appointments = appointments.filter((appointment: IAppointment) => {
-        return appointment.id !== id; 
-    }); 
-}; 
+}

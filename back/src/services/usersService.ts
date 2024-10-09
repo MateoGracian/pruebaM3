@@ -3,6 +3,8 @@ import { createCredentialsService } from './credentialsServices';
 import { modelUser } from '../config/data-source'; 
 import { User } from '../entities/User';
 
+//create a new User 
+
 export const createUsersService = async (userData: IUserDto): Promise<User> => {
     
     const credentials = await createCredentialsService({
@@ -18,12 +20,16 @@ export const createUsersService = async (userData: IUserDto): Promise<User> => {
     return result; 
 }; 
 
+//Get all users
+
 export const getUsersService = async (): Promise<User[]> => {
     const users = await modelUser.find({
         relations: ['credentials']
     });
     return users; 
 }
+
+//get user by id 
 
 export const getUserByIdService = async (id: number): Promise<User> => {
     const user = await modelUser.findOneBy({

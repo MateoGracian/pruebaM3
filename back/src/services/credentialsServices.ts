@@ -10,30 +10,26 @@ export const createCredentialsService = async (credentialsData: ICredentialsDto)
     const credentials = await modelCredentials.create(credentialsData);
     const result = await modelCredentials.save(credentials); 
     return result.id; 
-
-    // const {username, password} = credentialsData;
-
-    // const newCredentials: ICredentials = {
-    //     id, 
-    //     username,
-    //     password,
-    // };
-    
-    // credentialsDB.push(newCredentials);
-    // id++; 
-    // return newCredentials.id;
 }; 
 
 export const checkCredentialsService = async (username: string, password: string): Promise<number | null> => {
-    const credFound = credentialsDB.find((cred: ICredentials) => cred.username === username);
+    
+    const credFound = await modelCredentials.findOne({
+        where: {
+            username: username
+        }
+    })
+
     if (!credFound) {
         console.error(`User with username ${username} not found`);
-        return null;
+        return null; 
     }
+    
     if (credFound.password !== password) {
         console.error(`Password incorrect`);
-        return null;
+        return null; 
     }
+    
     return credFound.id;
 }
 
