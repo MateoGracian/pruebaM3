@@ -34,9 +34,9 @@ export class User {
     credentials: Credential
 
     @Column({ nullable: true })
-    credentialsId: number;
+    credentialsId: number
 
     @OneToMany(() => Appointment, (appointments) => appointments.user)
-    appointments: Appointment[];
+    appointments: Appointment[]
 }
 

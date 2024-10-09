@@ -31,5 +31,7 @@ export const checkCredentialsService = async (username: string, password: string
     }
     
     return credFound.id;
-}
+} //* utilizar en el LOG IN 
+
+
 

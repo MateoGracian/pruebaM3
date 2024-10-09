@@ -1,9 +1,9 @@
-import Status from "../enums/enums";
+import { User } from "../entities/User";
 
 interface IAppointmentDto {
-    date: number;
-    time: number;
-    status: Status; 
+    date: string;
+    time: string;
+    user: User;
 }
 
 export default IAppointmentDto; 

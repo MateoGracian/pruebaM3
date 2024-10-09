@@ -5,17 +5,17 @@ import { User } from "./User";
 @Entity()
 export class Appointment {
     @PrimaryGeneratedColumn()
-    id: number; 
-
-    @Column("date")
-    date: number;
-
-    @Column("time")
-    time: number;
+    id: number
 
     @Column()
-    status: Status; 
+    date: string //! cambiar a tipo Date
+
+    @Column()
+    time: string //! cambiar a tipo Date 
+
+    @Column()
+    status: Status 
 
     @ManyToOne(() => User, (user) => user.appointments)
-    user: User; 
+    user: User
 }

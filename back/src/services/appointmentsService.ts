@@ -5,6 +5,7 @@ import { Appointment } from "../entities/Appointment";
 //create an appointment 
 export const createAppointmentsService = async (appointmentData: IAppointmentDto): Promise<Appointment> => {
     const appointment = await modelAppointment.create(appointmentData);
+    appointment.status = 'active';
     const result = await modelAppointment.save(appointment);
     return result; 
 };
@@ -21,11 +22,8 @@ export const getAppointmentsService = async (): Promise<Appointment[]> => {
 
 export const getAppointmentsByIdService = async (id: number): Promise<Appointment> => {
     const appointment = await modelAppointment.findOne({
-        where: {
-            id: id
-        },
-        relations: ['user']
-    });
+        where: { id }
+    }); 
 
     if(!appointment) {
         throw new Error('No se ha encontrado el turno');
@@ -37,9 +35,7 @@ export const getAppointmentsByIdService = async (id: number): Promise<Appointmen
 //update an appointment status
 export const updateAppointmentsService = async (id: number): Promise<Appointment> => {
     const appointment = await modelAppointment.findOne({
-        where: {
-            id: id
-        },
+        where: { id },
         relations: ['user']
     });
 
@@ -47,6 +43,7 @@ export const updateAppointmentsService = async (id: number): Promise<Appointment
         throw new Error('No se ha encontrado el turno');
     }
 
-    appointment.status = 'cancelled'; 
-    return appointment; 
+    appointment.status = 'cancelled';
+    const result = await modelAppointment.save(appointment);
+    return result; 
 }

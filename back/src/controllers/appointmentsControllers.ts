@@ -6,8 +6,8 @@ import { Appointment } from "../entities/Appointment";
 
 export const createAppointments = (req: Request, res: Response) => {
     try {
-        const { date, time,status } = req.body;
-        const newAppointment = createAppointmentsService({ date, time, status });
+        const { date, time, user } = req.body;
+        const newAppointment = createAppointmentsService({ date, time, user });
         res.status(201).json(newAppointment);
     } catch (error) {
         res.status(404).send("No se han podido cargar los turnos");
@@ -25,14 +25,14 @@ export const getAppointments = async (req: Request, res: Response): Promise<Resp
 
 export const getAppointmentsById = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
-    const appointment = getAppointmentsByIdService(parseInt(id));
+    const appointment: Appointment = await getAppointmentsByIdService(parseInt(id));
     return res.status(200).json(appointment);
 }; 
 
 //update an appointment 
 
 export const updateAppointments = async (req: Request, res: Response): Promise<Response>=> {
-    const { id } = req.body;
+    const { id } = req.params;
     const appointment = updateAppointmentsService(parseInt(id));
     return res.status(200).json(appointment);
 }; 
