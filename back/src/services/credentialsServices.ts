@@ -1,15 +1,18 @@
-import ICredentials from '../interfaces/ICredentials';
 import ICredentialsDto from '../dto/credentialsDto';
 import { modelCredentials } from '../config/data-source';
+import { Credentials } from '../entities/Credential';
 
-const credentialsDB: ICredentials[] = [];
-let id: number = 1; 
 
-export const createCredentialsService = async (credentialsData: ICredentialsDto): Promise<number> => {
+export const createCredentialsService = async (credentials: ICredentialsDto): Promise<Credentials> => {
+    const {username, password} = credentials;
 
-    const credentials = await modelCredentials.create(credentialsData);
-    const result = await modelCredentials.save(credentials); 
-    return result.id; 
+    const newCredentials = modelCredentials.create({
+        username, 
+        password,
+    });
+
+    await modelCredentials.save(newCredentials); 
+    return newCredentials;
 }; 
 
 export const checkCredentialsService = async (username: string, password: string): Promise<number | null> => {

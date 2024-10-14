@@ -4,7 +4,6 @@ import {
   createUsersService,
   getUserByIdService,
 } from "../services/usersService";
-import IUser from "../interfaces/IUser";
 import { User } from "../entities/User"; 
 
 //register a new user 

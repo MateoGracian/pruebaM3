@@ -5,9 +5,8 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
-  Unique,
 } from "typeorm";
-import { Credential } from "./Credential";
+import { Credentials } from "./Credential";
 import { Appointment } from "./Appointment";
 
 @Entity({name: "users"})
@@ -29,12 +28,9 @@ export class User {
     @Column("int")
     nDni: number
 
-    @OneToOne(() => Credential)
+    @OneToOne(() => Credentials, (credential) => credential.user, {cascade: true, onDelete: "CASCADE"})  
     @JoinColumn()
-    credentials: Credential
-
-    @Column({ nullable: true })
-    credentialsId: number
+    credentials: Credentials
 
     @OneToMany(() => Appointment, (appointments) => appointments.user)
     appointments: Appointment[]
