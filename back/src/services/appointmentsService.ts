@@ -8,22 +8,26 @@ export const createAppointmentsService = async (
 ): Promise<Appointment | null> => {
   const { date, time, user } = appointmentData;
 
-  const userEntity = await modelUser.findOne({
-    where: { id: user.id },
-  });
+  if(!user) return null;
 
-  if (userEntity) {
+  try {
     const newAppointment = modelAppointment.create({
       date,
       time,
-      user: userEntity,
+      user,
     });
 
-    newAppointment.status = "active";
+    newAppointment.status = "active"; 
 
+    await modelAppointment.save(newAppointment);
+    
     return newAppointment;
-  } else return null;
+  } catch (error) {
+    console.error("Error creando el turno:", error);
+    return null; 
+  }
 };
+
 
 //get all appointments
 export const getAppointmentsService = async (): Promise<Appointment[]> => {

@@ -1,7 +1,6 @@
 import { PrimaryGeneratedColumn, Column, OneToMany, Entity, ManyToOne, JoinColumn } from "typeorm";
 import  Status  from "../enums/enums";
 import { User } from "./User"; 
-import { stat } from "fs";
 
 @Entity()
 export class Appointment {
