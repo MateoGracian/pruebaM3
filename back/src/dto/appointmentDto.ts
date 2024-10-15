@@ -1,9 +1,9 @@
 import { User } from "../entities/User";
 
 interface IAppointmentDto {
-    date: string;
+    date: Date;
     time: string;
-    user: User;
+    userId: {id: number};
 }
 
 export default IAppointmentDto; 

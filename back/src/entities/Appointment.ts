@@ -19,5 +19,5 @@ export class Appointment {
     status: Status 
 
     @ManyToOne(() => User, (user) => user.appointments)
-    user: User
+    userId: User
 }

@@ -3,7 +3,7 @@ import ICredentialsDto from "./credentialsDto";
 interface IUserDto {
     name: string;
     email: string;
-    birthdate: number;
+    birthdate: Date;
     nDni: number;
     username: string;
     password: string;

@@ -22,8 +22,10 @@ export class User {
     @Column("text")
     email: string
 
-    @Column("int")
-    birthdate: number
+    @Column({
+        type: "date"
+    })
+    birthdate: Date
 
     @Column("int")
     nDni: number
@@ -32,7 +34,7 @@ export class User {
     @JoinColumn()
     credentials: Credentials
 
-    @OneToMany(() => Appointment, (appointments) => appointments.user)
+    @OneToMany(() => Appointment, (appointments) => appointments.userId)
     appointments: Appointment[]
 }
 

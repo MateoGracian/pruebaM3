@@ -9,7 +9,7 @@ appointmentsRouter.get('/', getAppointments);
 
 appointmentsRouter.get('/:id', getAppointmentsById);
 
-appointmentsRouter.put('/:id', updateAppointments);
+appointmentsRouter.put('/cancel/:id', updateAppointments);
 
 
 export default appointmentsRouter; 

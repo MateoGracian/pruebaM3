@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
     username: DB_USER,
     password: DB_PASS,
     database: DB_NAME,
-    //dropSchema: true,
+    // dropSchema: true,
     synchronize: true,
     logging: true,
     entities: [User, Appointment, Credentials],
@@ -19,6 +19,7 @@ export const AppDataSource = new DataSource({
     migrations: [],
 }); 
 
+export const queryRunner = AppDataSource.createQueryRunner(); 
 export const modelUser = AppDataSource.getRepository(User); 
 export const modelCredentials = AppDataSource.getRepository(Credentials); 
 export const modelAppointment = AppDataSource.getRepository(Appointment); 
