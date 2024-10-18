@@ -1,10 +1,9 @@
-import "./App.css"
-import NavBar from './views/NavBar' 
+import Home from './views/Home'
 
 const App = () => {
   
   return (
-    <NavBar/>
+    <Home/>
   )
 }
 
