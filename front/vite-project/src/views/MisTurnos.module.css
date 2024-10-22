@@ -1,0 +1,24 @@
+.title {
+    color: rgb(2, 3, 44);
+    margin-left: 11rem;
+    font-size: 2rem;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10rem;
+    margin-left: 10rem;
+}
+
+/* .infoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: rgb(2, 3, 44);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+} */
