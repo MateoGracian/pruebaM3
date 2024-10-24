@@ -1,0 +1,13 @@
+.barberLogoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(2, 3, 44);
+    padding-top: 70px;
+    width: 100%;
+}
+  
+.barberLogo {
+    width: 300px;
+    background-size: cover;
+}

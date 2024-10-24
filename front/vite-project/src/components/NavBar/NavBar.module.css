@@ -1,5 +1,5 @@
 .container{
-    padding: 10px;
+    padding: 25px;
     margin: auto; /* Cambiado a auto para centrar horizontalmente */
     display: flex;
     flex-direction: row;
@@ -10,7 +10,28 @@
     border-width: 2px;
     border-radius: 0px;
     box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+    position: fixed;
+    width: 100%;
 }
+
+/* .indice {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform  2s ease;
+}
+
+.indice:hover {
+    /* text-decoration-color: aliceblue;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-style:solid; */
+    /* transform: scaleX(1); */
+/* } */ 
 
 .indice {
     text-decoration: none;
@@ -18,21 +39,9 @@
     font-size: 16px;
     padding: 8px 16px;
     cursor: pointer;
-    transition: text-decoration 0.3s ease; 
-}
-
-.indice:hover{
-    text-decoration-color: aliceblue;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-decoration-style:solid;
-}
-
-.navContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center; 
+    position: relative; /* Necesario para posicionar el pseudo-elemento */
+    display: inline-block; /* Asegura que el elemento sea tratado como bloque en línea */
+    margin: 10px;
 }
 
 #reservar {
@@ -46,3 +55,27 @@
     color: rgb(97, 95, 95);
     text-decoration: none;
 }
+
+.indice::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px; /* Grosor de la línea */
+    background-color: aliceblue; /* Color de la línea */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s ease; /* Transición suave para el efecto */
+}
+
+.indice:hover::after {
+    width: 100%; /* Expande la línea a todo el ancho del elemento al hacer hover */
+}
+
+.navContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+}
+

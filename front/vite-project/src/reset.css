@@ -1,0 +1,77 @@
+/* reset.css */
+
+/* Elimina márgenes y rellenos predeterminados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Elimina las decoraciones de los enlaces */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Elimina la apariencia predeterminada de las listas */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Restablece tipografía y altura de línea */
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Imágenes a su tamaño máximo */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Elimina bordes de elementos multimedia */
+iframe,
+object,
+embed {
+    border: 0;
+}
+
+/* Estilos básicos para elementos de formulario */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    border: none;
+    background: none;
+    outline: none;
+    appearance: none;
+}
+
+/* Hacer que los botones y inputs sean legibles sin estilos */
+button {
+    cursor: pointer;
+}
+
+/* Eliminar decoraciones de elementos de formulario */
+textarea {
+    resize: vertical;
+}
+
+/* Forzar que los elementos sean visibles y sin desbordamientos */
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Restablece el estilo de tablas */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}

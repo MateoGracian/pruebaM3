@@ -1,14 +1,26 @@
-import { allAppointments } from "../helpers/myAppointments"
-import { useState } from "react"
-import Appointment from "../components/Appointment/Appointment";
+import { useState, useEffect } from "react"
+import Appointment from "../../components/Appointment/Appointment";
 import styles from './MisTurnos.module.css'
+import axios from 'axios'; 
 
 const MisTurnos = () => {
-    const [ appointments, setAppointments] = useState(allAppointments); 
+    const [ appointments, setAppointments] = useState([]); 
+
+    useEffect(() => {
+        const fetchAppointments = async () => {
+            try {
+                const response = await axios.get('http://localhost:7070/appointments');
+                setAppointments(response.data)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchAppointments(); 
+    }, []); 
 
     const handleCancelAppointment = (id) => {
         const newAppointments = appointments.map((appointment) => {
-            //! PEGAR LA RUTA DEL BACKEND PARA CAMBIAR EL ESTADO DEL TURNO
             if (appointment.id === id) {
                 return {
                     ...appointment,
@@ -23,11 +35,7 @@ const MisTurnos = () => {
     return (
         <>   
             <h2 className={styles.title}>Mis Turnos</h2>
-            <div className={styles.infoContainer}>
-                <p className={styles.info}>Fecha: </p>
-                <p className={styles.info}>Hora: </p>
-                <p className={styles.info}>Estado: </p>
-            </div>
+
             {
                 appointments.map((appointment) => {
                     return (
