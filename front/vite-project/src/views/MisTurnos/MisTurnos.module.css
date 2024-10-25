@@ -11,6 +11,10 @@
     margin-left: 10rem;
 }
 
+.appointmentsContainer {
+    margin-top: 50px;
+}
+
 /* .infoContainer {
     display: flex;
     flex-direction: row;

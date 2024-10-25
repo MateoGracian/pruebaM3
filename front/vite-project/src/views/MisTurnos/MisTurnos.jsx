@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const MisTurnos = () => {
     const [ appointments, setAppointments] = useState([]); 
+    const [flag, setFlag] = useState(false);
 
     useEffect(() => {
         const fetchAppointments = async () => {
@@ -17,23 +18,23 @@ const MisTurnos = () => {
         }
 
         fetchAppointments(); 
-    }, []); 
+    }, [flag]); 
 
     const handleCancelAppointment = (id) => {
-        const newAppointments = appointments.map((appointment) => {
-            if (appointment.id === id) {
-                return {
-                    ...appointment,
-                    status: "cancelled"
-                }
+        const cancelAppointment = async () => {
+            try {
+                await axios.put(`http://localhost:7070/appointments/cancel/${id}`);
+                setAppointments(appointments.filter(appointment => appointment.id !== id))
+                setFlag(!flag)
+            } catch (error) {
+                console.error(error);
             }
-            return appointment
-        })
-        setAppointments(newAppointments)
-
+        }
+        cancelAppointment();
     }
+
     return (
-        <>   
+        <div className={styles.appointmentsContainer}>   
             <h2 className={styles.title}>Mis Turnos</h2>
 
             {
@@ -51,7 +52,7 @@ const MisTurnos = () => {
                     )
                 })
             }
-        </>
+        </div>
     )
 }
 
