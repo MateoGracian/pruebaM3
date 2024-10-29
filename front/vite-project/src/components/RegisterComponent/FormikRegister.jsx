@@ -15,20 +15,16 @@ const FormikRegister = ({onClose}) => {
       password: "",
     },
     validate, 
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values, {resetForm}) => {
+        try {
+            const response = await axios.post("http://localhost:7070/users/register", values);
+            console.log(response);
+            resetForm();
+          } catch (error) {
+            console.error(error);
+          }
     },
   });
-
-  const submitRegisterForm = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:7070/users/register", formik.values);
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <div className={styles.formContainer}>
@@ -133,7 +129,7 @@ const FormikRegister = ({onClose}) => {
                 ) : null}
             </div>
 
-        <button type="submit" className={styles.submitButton} onClick={submitRegisterForm}>Sign Up</button>
+        <button type="submit" className={styles.submitButton} >Sign Up</button>
         </form>
     </div>
   );

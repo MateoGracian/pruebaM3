@@ -1,5 +1,5 @@
-.formContainer {
-    position:absolute; 
+.formContainer{
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -11,13 +11,13 @@
     z-index: 1000;
 }
 
-.title {
+.title{
     font-size: 30px;
     margin: 10px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
 
-.myForm {
+.myForm{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,7 +25,7 @@
     background-color: rgb(2, 3, 44);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 500px;
     margin: auto;
@@ -33,14 +33,14 @@
     font-weight: bold;
 }
 
-.inputContainer {
+.inputContainer{
     display: flex;
     flex-direction: column;
     margin: 10px;
     margin-bottom: 15px;
 }
 
-.userInput {
+.userInput{
     margin: 10px;
     margin-left: 0px;
     padding: 10px;
@@ -60,27 +60,26 @@
     cursor: pointer;
 }
 
-.submitButton:hover {
+.submitButton:hover{
     background-color: rgb(2, 3, 44);
-    color: white;
-    border: 2px solid white;
+    color: rgb(231, 231, 226);
+    border: 2px solid rgb(231, 231, 226);
+}
+
+.closeButton{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: rgb(220, 11, 11);
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .errors {
     color: red;
     font-size: 15px;
     margin: 5px;
-} 
-
-.closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    color: red; 
 }
-
-/* QUE EL CLOSE BUTTON NO ESTE TAN LEJOS EN LA PANTALLA Y QUE EL CREAR CUENTA E INICIAR SESION ESTEN A LA IZQUIERDA DE TODO */
+ 

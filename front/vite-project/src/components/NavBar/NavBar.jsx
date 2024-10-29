@@ -1,9 +1,20 @@
 import styles from './NavBar.module.css';
 import Register from '../../views/Register/Register';
 import { useState } from 'react';
+import Login from '../../views/Login/Login';
 
 const NavBar = () => {
     const [showRegister, setShowRegister] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
+
+    const handleLoginClick = (event) => {
+        event.preventDefault();
+        setShowLogin(true);
+    }
+
+    const handleCloseLogin = () => {
+        setShowLogin(false);
+    }
 
     const handleRegisterClick = (event) => {
         event.preventDefault();
@@ -21,7 +32,7 @@ const NavBar = () => {
                     <ul className={styles.navContainer}>
                         <div className={styles.identityContainer}>
                             <li><a href="/" className={styles.identity} onClick={handleRegisterClick}>Crear cuenta</a></li>
-                            <li><a href="/" className={styles.identity}>Iniciar sesión</a></li>
+                            <li><a href="/" className={styles.identity} onClick={handleLoginClick}>Iniciar sesión</a></li>
                         </div>
                         <li><a href="/" className={styles.indice}>INICIO</a></li>
                         <li><a href="/" className={styles.indice}>NOSOTROS</a></li>
@@ -32,6 +43,7 @@ const NavBar = () => {
                 </nav>
             </div>
             {showRegister && <Register onClose={handleCloseRegister} />}
+            {showLogin && <Login onClose={handleCloseLogin} />}
         </>
     ); 
 }

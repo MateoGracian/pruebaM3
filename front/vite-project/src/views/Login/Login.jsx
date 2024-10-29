@@ -1,28 +1,15 @@
-import validate from './validate';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import styles from './Login.module.css';
+import FormikLogin from '../../components/LoginComponent/FormikLogin';
 
-const FormikLogin = () => {
-    const initialValues = {
-        email: '',
-        password: '',
-    };
-    
+// eslint-disable-next-line react/prop-types
+const Login = ( {onClose} ) => {
     return (
-        <Formik 
-        initialValues={initialValues} 
-        validate={validate}
-        onSubmit={(values) => {alert(`usernmame: ${values.username} password: ${values.password}`)}}>
-        <Form>
-            <Field type='text' name='username' />
-            <ErrorMessage name='username' component='div' />
-
-            <Field type='password' name='password' />
-            <ErrorMessage name='password' component='div' />
-
-            <button type='submit'>Log In</button>
-        </Form>
-        </Formik>
-    );
+        <div className={styles.overlay}>
+            <div className={styles.modal}>
+                <FormikLogin onClose={onClose}/>
+            </div>
+        </div>
+    )
 }
 
-export default FormikLogin; 
+export default Login;

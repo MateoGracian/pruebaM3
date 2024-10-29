@@ -25,11 +25,6 @@ export const createCredentialsService = async (
       throw new Error(`User with username ${username} already exists`);
     }
 
-    // const newCredentials = modelCredentials.create({
-    //   username,
-    //   password,
-    // });
-
     const newCredentials = await queryRunner.manager.create(modelCredentials.target, {
       username,
       password,
@@ -64,4 +59,4 @@ export const checkCredentialsService = async (
     }
 
     return credFound?.id;
-}; //* utilizar en el LOG IN
+}; 

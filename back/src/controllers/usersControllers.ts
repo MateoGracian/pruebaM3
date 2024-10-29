@@ -3,6 +3,7 @@ import {
   getUsersService,
   createUsersService,
   getUserByIdService,
+  loginUsersService
 } from "../services/usersService";
 import { User } from "../entities/User"; 
 
@@ -28,14 +29,18 @@ export const createUsers = async (req: Request, res: Response): Promise<Response
 
 // login a new user 
 
-// export const loginUsers = async (req: Request, res: Response): Promise<Response> => {  
-//   try {
-//   } catch (error) {
-   
-//   }
-// };
-
-//get all users 
+export const loginUsers = async (req: Request, res: Response): Promise<Response> => {  
+  try {
+    const { username, password } = req.body;
+    const user = await loginUsersService(username, password);
+    
+    return user
+    ? res.status(200).json(user)
+    : res.status(404).send("No se ha podido loguear el usuario");
+  } catch (error) {
+    return res.status(404).send("No se ha podido loguear el usuario"); 
+  }
+};
 
 export const getUsers = async (req: Request, res: Response): Promise<Response> => {
   try {

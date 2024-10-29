@@ -1,5 +1,5 @@
 import IUserDto from "../dto/userDto";
-import { createCredentialsService } from "./credentialsServices";
+import { createCredentialsService, checkCredentialsService } from "./credentialsServices";
 import {
   modelCredentials,
   modelUser,
@@ -84,5 +84,31 @@ export const getUserByIdService = async (id: number): Promise<User | null> => {
     return user;
 };
 
+//login a user
 
+export const loginUsersService = async (
+  username: string,
+  password: string
+): Promise<User | null> => {
+  try {
+    const credentialsId = await checkCredentialsService(username, password);
+
+    if (!credentialsId) {
+      throw new Error("Usuario no encontrado");
+    }
+
+    const user = await modelUser.findOne({
+      where: { credentials: { id: credentialsId } },
+      relations: ["appointments"],
+    });
+
+    if (!user) {
+      throw new Error("Usuario no encontrado");
+    }
+
+    return user;
+  } catch (error) {
+    return null; 
+  }
+}; 
 
