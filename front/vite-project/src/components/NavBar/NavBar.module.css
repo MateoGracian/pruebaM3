@@ -1,6 +1,25 @@
+/* .singUp {
+    text-decoration: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: rgb(2, 3, 44);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+} */
+
+.registerButton {
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: rgb(2, 3, 44);
+}
+
 .container{
     padding: 25px;
-    margin: auto; /* Cambiado a auto para centrar horizontalmente */
+    margin: auto; 
     display: flex;
     flex-direction: row;
     border-style: solid;
@@ -14,24 +33,20 @@
     width: 100%;
 }
 
-/* .indice {
+.identity {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 16px;
-    padding: 8px 16px;
     cursor: pointer;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform  2s ease;
+    position: relative; 
+    display: inline-block; 
 }
 
-.indice:hover {
-    /* text-decoration-color: aliceblue;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-decoration-style:solid; */
-    /* transform: scaleX(1); */
-/* } */ 
+.identityContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
 
 .indice {
     text-decoration: none;
@@ -39,8 +54,8 @@
     font-size: 16px;
     padding: 8px 16px;
     cursor: pointer;
-    position: relative; /* Necesario para posicionar el pseudo-elemento */
-    display: inline-block; /* Asegura que el elemento sea tratado como bloque en línea */
+    position: relative; 
+    display: inline-block; 
     margin: 10px;
 }
 

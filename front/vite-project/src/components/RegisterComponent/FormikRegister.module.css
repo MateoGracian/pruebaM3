@@ -1,0 +1,84 @@
+.formContainer {
+    position:absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.title {
+    font-size: 30px;
+    margin: 10px;
+    margin-bottom: 20px; 
+}
+
+.myForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(2, 3, 44);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-bottom: 15px;
+}
+
+.userInput {
+    margin: 10px;
+    margin-left: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(231, 231, 226);
+    color: rgb(2, 3, 44);
+}
+
+.submitButton{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(231, 231, 226);
+    color: rgb(2, 3, 44);
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: rgb(2, 3, 44);
+    color: white;
+    border: 2px solid white;
+}
+
+.errors {
+    color: red;
+    font-size: 15px;
+    margin: 5px;
+} 
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: red; 
+}
