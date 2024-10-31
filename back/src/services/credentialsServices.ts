@@ -44,8 +44,7 @@ export const checkCredentialsService = async (
   password: string
 ): Promise<number | null> => {
     const credFound = await modelCredentials.findOne({
-      where: { username },
-      relations: ["userId"],
+      where: { username }
     });
 
     if (!credFound) {

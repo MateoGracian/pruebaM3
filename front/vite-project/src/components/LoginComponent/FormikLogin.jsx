@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
 import styles from "./FormikLogin.module.css";
 import axios from "axios";
-import PropTypes from "prop-types";
+import { Link, useNavigate } from "react-router-dom";
 
-const FormikLogin = ({ onClose }) => {
+const FormikLogin = () => {
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -27,16 +27,22 @@ const FormikLogin = ({ onClose }) => {
         );
         console.log("Login exitoso:", response.data);
         resetForm();
+        navigate("/mis-turnos");
       } catch (error) {
         console.error("Error al iniciar sesión:", error);
       }
     },
   });
+  const navigate = useNavigate();
+
+  const handleCloseLogin = () => {
+    navigate("/"); 
+  }
 
   return (
     <div className={styles.formContainer}>
       <form onSubmit={formik.handleSubmit} className={styles.myForm}>
-        <button className={styles.closeButton} onClick={onClose}>X</button>
+        <button className={styles.closeButton} onClick={handleCloseLogin}>X</button>
 
         <h1 className={styles.title}>Login</h1>
 
@@ -75,13 +81,11 @@ const FormikLogin = ({ onClose }) => {
         <button type="submit" className={styles.submitButton}>
           Login
         </button>
+        
+        <Link to="/register" className={styles.registerLink}>¿No tienes cuenta? Registrate</Link>
       </form>
     </div>
   );
-};
-
-FormikLogin.propTypes = {
-  onClose: PropTypes.func.isRequired,
 };
 
 export default FormikLogin;

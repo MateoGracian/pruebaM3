@@ -2,9 +2,9 @@ import { useFormik } from "formik";
 import validate from "../../helpers/validate";
 import styles from "./FormikRegister.module.css";
 import axios from "axios";
-import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-const FormikRegister = ({onClose}) => {
+const FormikRegister = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -20,16 +20,22 @@ const FormikRegister = ({onClose}) => {
             const response = await axios.post("http://localhost:7070/users/register", values);
             console.log(response);
             resetForm();
+            navigate("/login");
           } catch (error) {
             console.error(error);
           }
     },
   });
+  const navigate = useNavigate(); 
+
+  const handleClose = () => {
+    navigate('/');
+  }
 
   return (
     <div className={styles.formContainer}>
         <form onSubmit={formik.handleSubmit} className={styles.myForm}>
-        <button className={styles.closeButton} onClick={onClose}>X</button>
+        <button className={styles.closeButton} onClick={handleClose}>X</button>
 
         <h1 className={styles.title}>Sign Up</h1>
         
@@ -133,10 +139,6 @@ const FormikRegister = ({onClose}) => {
         </form>
     </div>
   );
-};
-
-FormikRegister.propTypes = {
-    onClose: PropTypes.func.isRequired,
 };
 
 export default FormikRegister;

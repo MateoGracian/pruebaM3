@@ -82,4 +82,16 @@
     font-size: 15px;
     margin: 5px;
 }
- 
+
+.registerLink{
+    text-decoration: none;
+    color: rgb(231, 231, 226);
+    font-size: 15px;
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.registerLink:hover{
+    color: rgb(100, 102, 204);
+}
