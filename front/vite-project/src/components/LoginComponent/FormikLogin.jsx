@@ -43,6 +43,9 @@ const FormikLogin = () => {
         return response.data;
       } catch (error) {
         console.error("Error al iniciar sesión:", error);
+        setError('Usuario o contraseña incorrectos');
+      } finally {
+        setLoading(false);
       }
     },
   });

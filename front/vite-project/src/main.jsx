@@ -7,10 +7,10 @@ import UserProvider from './context/UserContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <UserProvider>
     <BrowserRouter>
+    <UserProvider>
       <App />
-    </BrowserRouter>
     </UserProvider>
+    </BrowserRouter>
   </StrictMode>,
 )

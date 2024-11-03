@@ -39,7 +39,7 @@ const MisTurnos = () => {
             try {
                 await axios.put(`http://localhost:7070/appointments/cancel/${id}`);
                 setAppointments(appointments.filter(appointment => appointment.id !== id))
-                setFlag(!flag)
+                setFlag(!flag) 
             } catch (error) {
                 console.error(error);
             }

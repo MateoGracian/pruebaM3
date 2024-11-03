@@ -11,6 +11,10 @@ export const UserProvider = ({children}) => {
     const updateUser = (userData) => {
         setUsers(userData);
     }
+
+    const logout = () => {
+        setUsers(null);
+    }
     
     const updateAppointments = (newAppointments) => {
         setAppointments(newAppointments);
@@ -21,15 +25,10 @@ export const UserProvider = ({children}) => {
     }
     
     return (
-        <UserContext.Provider value={{users, updateUser, updateAppointments, addAppointment }}>
+        <UserContext.Provider value={{users, updateUser, updateAppointments, addAppointment, logout }}>
             {children}
         </UserContext.Provider>
     )
 };
 
 export default UserProvider;
-
-
-
-
-//! HACER QUE LA SECCION MIS TURNO SOLO APAREZCA SI EXISTE UN USER LOGUEADO 

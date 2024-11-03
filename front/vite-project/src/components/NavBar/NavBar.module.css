@@ -8,91 +8,138 @@
     align-items: center;
     flex-direction: row;
     position: relative;
-} */
+    } */
 
 .registerButton {
-    text-decoration: none;
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    background-color: rgb(2, 3, 44);
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  background-color: rgb(2, 3, 44);
 }
 
-.container{
-    padding: 25px;
-    margin: auto; 
-    margin-top: 0px;
-    display: flex;
-    flex-direction: row;
-    border-style: solid;
-    justify-content: center;
-    border-color: rgb(2, 3, 44);
-    background-color: rgb(2, 3, 44);
-    border-width: 2px;
-    border-radius: 0px;
-    box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
-    /* position: fixed; */
-    width: 100%;
+.indiceContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px; /* Espacio entre los enlaces */
+  align-items: center;
+}
+
+.container {
+  padding: 25px;
+  margin: auto;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: row;
+  border-style: solid;
+  justify-content: center;
+  border-color: rgb(2, 3, 44);
+  background-color: rgb(2, 3, 44);
+  border-width: 2px;
+  border-radius: 0px;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+  /* position: fixed; */
+  width: 100%;
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 150px;
+  /* width: 100%; */
 }
 
 .identity {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-    cursor: pointer;
-    font-size: 14px;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .identityContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
-    margin-left: 3.5px;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: auto;
+  margin-left: 150px;
 }
 
 .indice {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  padding: 8px 16px;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+#reservar {
+  border-width: 2px;
+  border-radius: 8px;
+  background-color: rgb(231, 231, 226);
+  color: rgb(2, 3, 44);
+}
+
+#reservar:hover {
+  color: rgb(97, 95, 95);
+  text-decoration: none;
+}
+
+.indice::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px; /* Grosor de la línea */
+  background-color: aliceblue; /* Color de la línea */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: width 0.3s ease; /* Transición suave para el efecto */
+}
+
+.indice:hover::after {
+  width: 100%; /* Expande la línea a todo el ancho del elemento al hacer hover */
+}
+
+.logoutButton {
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-size: 16px;
     padding: 8px 16px;
     cursor: pointer;
-    position: relative; 
-    display: inline-block; 
+    position: relative;
+    display: inline-block;
     margin: 10px;
 }
 
-#reservar {
-    border-width: 2px;
-    border-radius: 8px;
-    background-color: rgb(231, 231, 226);
-    color: rgb(2, 3, 44);
-}
-
-#reservar:hover {
-    color: rgb(97, 95, 95);
-    text-decoration: none;
-}
-
-.indice::after {
+.logoutButton::after {
     content: "";
     display: block;
     width: 0;
     height: 2px; /* Grosor de la línea */
-    background-color: aliceblue; /* Color de la línea */
+    background-color:   rgb(191, 38, 24); /* Color de la línea */
     position: absolute;
     left: 0;
     bottom: 0;
     transition: width 0.3s ease; /* Transición suave para el efecto */
 }
 
-.indice:hover::after {
+.logoutButton:hover::after {
     width: 100%; /* Expande la línea a todo el ancho del elemento al hacer hover */
 }
 
-.navContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center; 
+.scheduleButton {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 8px 16px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    margin: 10px;   
 }
 

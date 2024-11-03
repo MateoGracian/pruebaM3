@@ -3,11 +3,17 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(2, 3, 44);
-    padding-top: 0px;
     width: 100%;
+    margin-top: 0px;
 }
   
 .barberLogo {
     width: 300px;
     background-size: cover;
+}
+
+.gif {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
 }

@@ -59,6 +59,7 @@ const NewAppointmentPage = () => {
                         name="date"
                         onChange={formik.handleChange}
                         value={formik.values.date}
+                        className={styles.input}
                     />
                     {formik.errors.date ? <div className={styles.errors}>{formik.errors.date}</div> : null}
                 </div>
@@ -69,6 +70,7 @@ const NewAppointmentPage = () => {
                         name="time"
                         onChange={formik.handleChange}
                         value={formik.values.time}
+                        className={styles.input}
                     />
                     {formik.errors.time ? <div className={styles.errors}>{formik.errors.time}</div> : null}
                 </div>
