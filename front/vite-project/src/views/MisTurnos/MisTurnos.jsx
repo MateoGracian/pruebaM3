@@ -1,25 +1,38 @@
-import { useState, useEffect } from "react"
 import Appointment from "../../components/Appointment/Appointment";
 import styles from './MisTurnos.module.css'
 import axios from 'axios'; 
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 const MisTurnos = () => {
     const [ appointments, setAppointments] = useState([]); 
+    const { users, updateAppoinments } = useContext(UserContext);
     const [flag, setFlag] = useState(false);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
+        if(!users) {
+            navigate('/');
+            return;
+        }
+
         const fetchAppointments = async () => {
             try {
-                const response = await axios.get('http://localhost:7070/appointments');
-                setAppointments(response.data)
+                const response = await axios.get(`http://localhost:7070/users/${users.id}`);
+                if(JSON.stringify(response.data.appointments) !== JSON.stringify(appointments)) {
+                    setAppointments(response.data.appointments); 
+                    updateAppoinments(response.data.appointments);
+                    console.log(response.data.appointments)
+                }
             } catch (error) {
                 console.error(error);
             }
         }
 
         fetchAppointments(); 
-    }, [flag]); 
+    }, [users, navigate, flag, updateAppoinments, appointments]); 
 
     const handleCancelAppointment = (id) => {
         const cancelAppointment = async () => {
@@ -40,11 +53,10 @@ const MisTurnos = () => {
             <h1 className={styles.title}>Mis Turnos</h1>
                 {appointments.length === 0 && <div className={styles.container}><p className={styles.NoTurnsAdvert}> No tienes turnos agendados </p> <button className={styles.scheduleButton}><Link to="/agendar-turno"> AGENDA TU PRIMER TURNO AQUI! </Link></button></div>}
                 {
-                    appointments.map((appointment) => {
+                    appointments?.map((appointment) => {
                         return (
                             <div key={appointment.id} className={styles.cardsContainer}>
                                 <Appointment
-                                    name={appointment.userId.name}
                                     date={appointment.date}
                                     time={appointment.time}
                                     status={appointment.status}

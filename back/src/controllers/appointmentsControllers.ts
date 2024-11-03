@@ -20,7 +20,8 @@ export const createAppointments = async (req: Request, res: Response) => {
     }
 
     const newAppointment = await createAppointmentsService({ date, time, userId }) 
-    
+    console.log(newAppointment);
+
     return newAppointment
     ? res.status(201).json(newAppointment)
     : res.status(404).send("No se ha podido crear el turno"); 

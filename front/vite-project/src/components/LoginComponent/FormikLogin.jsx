@@ -2,8 +2,15 @@ import { useFormik } from "formik";
 import styles from "./FormikLogin.module.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState} from "react";
+import { UserContext } from "../../context/UserContext";
 
 const FormikLogin = () => {
+  const { updateUser} = useContext(UserContext);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(''); 
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -20,29 +27,36 @@ const FormikLogin = () => {
       return errors;
     },
     onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
+      setError('');
       try {
         const response = await axios.post(
           "http://localhost:7070/users/login",
           values
         );
-        console.log("Login exitoso:", response.data);
+
+        updateUser(response.data);
+        console.log(response.data.id);
         resetForm();
         navigate("/mis-turnos");
+
+        return response.data;
       } catch (error) {
         console.error("Error al iniciar sesión:", error);
       }
     },
   });
-  const navigate = useNavigate();
 
   const handleCloseLogin = () => {
-    navigate("/"); 
-  }
+    navigate("/");
+  };
 
   return (
     <div className={styles.formContainer}>
       <form onSubmit={formik.handleSubmit} className={styles.myForm}>
-        <button className={styles.closeButton} onClick={handleCloseLogin}>X</button>
+        <button className={styles.closeButton} onClick={handleCloseLogin}>
+          X
+        </button>
 
         <h1 className={styles.title}>Login</h1>
 
@@ -53,6 +67,7 @@ const FormikLogin = () => {
             id="username"
             name="username"
             type="text"
+            placeholder="Ingrese su usuario"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.username}
@@ -69,6 +84,7 @@ const FormikLogin = () => {
             id="password"
             name="password"
             type="password"
+            placeholder="Ingrese su contraseña"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
@@ -78,11 +94,15 @@ const FormikLogin = () => {
           ) : null}
         </div>
 
-        <button type="submit" className={styles.submitButton}>
-          Login
+        <button type="submit" className={styles.submitButton} disabled={loading}>
+          {loading ? 'Cargando...' : 'Login'}
         </button>
-        
-        <Link to="/register" className={styles.registerLink}>¿No tienes cuenta? Registrate</Link>
+
+        <Link to="/register" className={styles.registerLink}>
+          {" "}
+          ¿No tienes cuenta? Registrate!
+          {" "}
+        </Link>
       </form>
     </div>
   );
