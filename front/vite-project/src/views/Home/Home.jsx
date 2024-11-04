@@ -2,6 +2,7 @@ import styles from './Home.module.css'
 import logoBarber from '../../assets/logoBarber.png'
 import imagesBarberGif from '../../assets/imagesBarberGif.gif'
 import Servicios from '../../views/Servicios/Servicios'
+import Footer from '../../components/Footer/Footer'
 
 const Home = () => {
   
@@ -27,8 +28,13 @@ Sabemos lo que significa luchar por tus sueños y superar los retos, porque lo v
 Así que, si buscas más que un corte de pelo, ven a conocernos. Queremos que te sientas como en casa, en nuestra casa. ¡Te esperamos con los brazos abiertos!</p>          
           </div>
           <hr className={styles.hrLine}></hr>
+        <section id='servicios'>
           <Servicios/>
+        </section>
         </div>
+        <section id='footer'>
+          <Footer/>
+        </section>
       </>
     );
 }

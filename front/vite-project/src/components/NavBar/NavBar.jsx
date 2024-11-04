@@ -10,8 +10,15 @@ const NavBar = () => {
 
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        navigate('/');
     }
+
+    const handleScrollToSection = (sectionId) => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
 
     return (
         <div className={styles.container}>
@@ -31,8 +38,8 @@ const NavBar = () => {
             <ul className={styles.navContainer}>
               <li><Link to="/" className={styles.indice}>INICIO</Link></li>
               {users && <li><Link to="/mis-turnos" className={styles.indice}>MIS TURNOS</Link></li>}
-              <li><Link to="/servicios" className={styles.indice}>SERVICIOS</Link></li>
-              <li><Link to="/sucursales" className={styles.indice}>SUCURSALES</Link></li>
+              {/* <li><Link to="/servicios" className={styles.indice}>SERVICIOS</Link></li> */}
+              <li><button onClick={() => handleScrollToSection('servicios')} className={styles.indice}>SERVICIOS</button></li>
               <li><Link to="/agendar-turno" id={styles.reservar} className={styles.scheduleButton}>AGENDAR TURNO</Link></li>
             </ul>
           </nav>

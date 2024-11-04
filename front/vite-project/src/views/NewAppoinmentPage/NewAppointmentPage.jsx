@@ -30,6 +30,13 @@ const NewAppointmentPage = () => {
             if (!values.time) {
                 errors.time = 'La hora es requerida'
             }
+            if (values.date && values.time) {
+                const date = new Date(values.date + 'T' + values.time)
+                const now = new Date()
+                if (date < now) {
+                    errors.date = 'La fecha y hora deben ser futuras'
+                }
+            }
             return errors
         },
         onSubmit: async (values, { resetForm }) => {
