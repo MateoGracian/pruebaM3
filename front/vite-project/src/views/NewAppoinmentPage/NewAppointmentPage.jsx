@@ -37,6 +37,19 @@ const NewAppointmentPage = () => {
                     errors.date = 'La fecha y hora deben ser futuras'
                 }
             }
+            if(values.time){
+                const time = values.time.split(':')
+                if(time[0] < 9 || time[0] > 18){
+                    errors.time = 'El horario de atención es de 9 a 18'
+                }
+            }
+            if(values.date){
+                const date = new Date(values.date)
+                const day = date.getDay()
+                if(day === 0 || day === 6){
+                    errors.date = 'No se atiende los fines de semana'
+                }
+            }
             return errors
         },
         onSubmit: async (values, { resetForm }) => {

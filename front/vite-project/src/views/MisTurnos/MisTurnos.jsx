@@ -7,8 +7,8 @@ import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 
 const MisTurnos = () => {
-    const [ appointments, setAppointments] = useState([]); 
-    const { users, updateAppoinments } = useContext(UserContext);
+    // const [ appointments, setAppointments] = useState([]); 
+    const { users, updateAppoinments, appointments } = useContext(UserContext);
     const [flag, setFlag] = useState(false);
     const navigate = useNavigate(); 
 
@@ -22,7 +22,7 @@ const MisTurnos = () => {
             try {
                 const response = await axios.get(`http://localhost:7070/users/${users.id}`);
                 if(JSON.stringify(response.data.appointments) !== JSON.stringify(appointments)) {
-                    setAppointments(response.data.appointments); 
+                    // setAppointments(response.data.appointments); 
                     updateAppoinments(response.data.appointments);
                     console.log(response.data.appointments)
                 }
@@ -32,13 +32,14 @@ const MisTurnos = () => {
         }
 
         fetchAppointments(); 
-    }, [users, navigate, flag, updateAppoinments, appointments]); 
+    }, [users, navigate, flag, updateAppoinments, appointments]);   
 
     const handleCancelAppointment = (id) => {
         const cancelAppointment = async () => {
             try {
                 await axios.put(`http://localhost:7070/appointments/cancel/${id}`);
-                setAppointments(appointments.filter(appointment => appointment.id !== id))
+                // setAppointments(appointments.filter(appointment => appointment.id !== id))
+                updateAppoinments(appointments.filter(appointment => appointment.id !== id))
                 setFlag(!flag) 
             } catch (error) {
                 console.error(error);
